@@ -10,7 +10,7 @@ services:
       - keycloak-service
       - api-service
 #      - chat-ui # disable to chat-ui be served standalone
-    image: 'edge-service'
+    image: 'cncf-edge-service'
     container_name: 'edge-service'
     ports:
       - '9000:9000'
@@ -25,8 +25,10 @@ services:
   
   # Chat service
   api-service:
-    image: 'api-service'
+    image: 'cncf-api-service'
     container_name: 'api-service'
+    depends_on:
+      - postgres-service
     ports:
       - '9001:9001'
       - '8001:8001'
